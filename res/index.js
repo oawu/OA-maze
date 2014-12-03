@@ -49,7 +49,7 @@ $(function () {
 
   var cW = (column * dimension) * 2;
   var cH = (row * dimension) * 2;
-  var $cover = $('<div />').addClass ('cover').css ({'width': cW + 'px', 'height': cH + 'px', 'line-height': cH + 'px'}).append ($('<div />').addClass ('round').css ({'width': cD + 'px', 'height': cD + 'px', 'box-shadow': '0 0 0 ' + (Math.max (cW, cH) * 1.5 - cD) / 2 + 'px rgba(0, 0, 0, 1)'}));
+  var $cover = $('<div />').addClass ('cover').css ({'width': cW + 'px', 'height': cH + 'px', 'line-height': cH + 'px'}).append ($('<div />').addClass ('round').css ({'width': cD + 'px', 'height': cD + 'px', 'box-shadow': '0 0 0 ' + (Math.max (cW, cH) * 1.5 - cD) / 2 + 'px rgba(0, 0, 0, 1), inset 0 0 10px 3px rgba(0, 0, 0, 1)'}));
   $('#units').css ({'width': column * dimension + 2 + 'px', 'height': row * dimension + 2 + 'px'});
   $('#units').append (maze.map (function (t) { return t.map (function (u) { return $('<div />').addClass ('unit').css ({'width': dimension + 'px', 'height': dimension + 'px'}).addClass (classMap[u]); }); }).reduce (function (p, n) { return p.concat (n) }))
   $("#units").append ($cover);

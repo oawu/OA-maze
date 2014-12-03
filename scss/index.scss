@@ -7,14 +7,16 @@
 
 html {
   body {
+      background-color: #000;
     #container {
       #units {
         position: relative;
         display: inline-block;
-        border: 1px solid rgba(255, 0, 0, .1);
+        border: 1px solid #000;
         text-align: left;
         padding: 0;
         overflow: hidden;
+        background-color: $mainBackground;
 
         .cover {
           position: absolute;
@@ -25,6 +27,7 @@ html {
           overflow: hidden;
           top: 0;
           left: 0;
+          @include transition(all 0.3s ease-in-out);
 
           .round {
             margin: 0;
@@ -45,6 +48,7 @@ html {
           width: 20px;
           height: 20px;
           float: left;
+          @include transition(all 0.3s ease-in-out);
 
           &.wall {
             background-color: rgba(0, 0, 255, 0.5);
