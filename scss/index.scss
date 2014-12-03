@@ -8,6 +8,55 @@
 html {
   body {
     #container {
+      #units {
+        position: relative;
+        display: inline-block;
+        border: 1px solid rgba(255, 0, 0, .1);
+        text-align: left;
+        padding: 0;
+        overflow: hidden;
+
+        .cover {
+          position: absolute;
+          display: inline-block;
+          text-align: center;
+          padding: 0;
+          vertical-align: middle;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+
+          .round {
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin: auto;
+            vertical-align: middle;
+
+            @include border-radius(50%);
+            @include box-shadow(0 0 0 100px rgba(0, 0, 0, 1));
+          }
+        }
+        .unit {
+          margin: 0;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          float: left;
+
+          &.wall {
+            background-color: rgba(0, 0, 255, 0.5);
+          }
+          &.now {
+            background-color: rgba(0, 128, 0, 0.5);
+          }
+          &.end {
+            background-color: rgba(0, 0, 128, 0.9);
+          }
+        }
+      }
     }
   }
 }
