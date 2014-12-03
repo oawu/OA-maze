@@ -104,7 +104,7 @@ $(function () {
   var ok = function () {
     enable = false;
     alert ('太棒了！你成功囉！！');
-    window.location.assign ('https://github.com/comdan66');
+    window.location.assign ('https://github.com/comdan66/OA-maze');
   }
   var up = function () {
     if (!enable) return;
