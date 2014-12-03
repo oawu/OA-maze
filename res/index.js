@@ -143,18 +143,10 @@ $(function () {
     clearTimeout (timer)
   }
   $(window).on ('keydown', function (e) {
-    if (e.keyCode == 38) {
-      up ();
-    }
-    if (e.keyCode == 40) {
-      down ();
-    }
-    if (e.keyCode == 37) {
-      left ();
-    }
-    if (e.keyCode == 39) {
-      right ();
-    }
+    if (e.keyCode == 38) up ();
+    if (e.keyCode == 40) down ();
+    if (e.keyCode == 37) left ();
+    if (e.keyCode == 39) right ();
   })
 
   window.addEventListener ('deviceorientation', function (event) {
