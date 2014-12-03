@@ -12,10 +12,4 @@ ga('create', 'UA-46121102-7', 'auto');
 ga('send', 'pageview');
 
 $(function () {
-  $('.prettyprint').addClass ('linenums');
-  prettyPrint ();
-
-  $('.tab').OAtab ({defaultActive: 0});
-  $('.silders').OAscrollSliderView ();
-  $('.silder').OAimgLiquid ();
 });
