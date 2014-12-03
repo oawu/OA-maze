@@ -97,37 +97,83 @@ $(function () {
     moveMaze ();
     maze = newMaze;
   }
+  var timer = null;
 
   run (startPoint, endPoint, 1);
-
+  var up = function () {
+    if (maze[nowPoint.y - 1][nowPoint.x] && (maze[nowPoint.y - 1][nowPoint.x] == 1)) {
+      run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y - 1, type: 2});
+    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+      alert ('good');
+    }
+        clearTimeout (timer)
+  }
+  var down = function () {
+    if (maze[nowPoint.y + 1][nowPoint.x] && (maze[nowPoint.y + 1][nowPoint.x] == 1)) {
+      run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y + 1, type: 2});
+    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+      alert ('good');
+    }
+        clearTimeout (timer)
+  }
+  var left = function () {
+    if (maze[nowPoint.y][nowPoint.x - 1] && (maze[nowPoint.y][nowPoint.x - 1] == 1)) {
+      run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x - 1, y: nowPoint.y, type: 2});
+    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+      alert ('good');
+    }
+        clearTimeout (timer)
+  }
+  var right = function () {
+    if (maze[nowPoint.y][nowPoint.x + 1] && (maze[nowPoint.y][nowPoint.x + 1] == 1)) {
+      run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x + 1, y: nowPoint.y, type: 2});
+    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+      alert ('good');
+    }
+        clearTimeout (timer)
+  }
   $(window).on ('keydown', function (e) {
     if (e.keyCode == 38) {
-      if (maze[nowPoint.y - 1][nowPoint.x] && (maze[nowPoint.y - 1][nowPoint.x] == 1)) {
-        run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y - 1, type: 2});
-      } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
-        alert ('good');
-      }
+      up ();
     }
     if (e.keyCode == 40) {
-      if (maze[nowPoint.y + 1][nowPoint.x] && (maze[nowPoint.y + 1][nowPoint.x] == 1)) {
-        run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y + 1, type: 2});
-      } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
-        alert ('good');
-      }
+      down ();
     }
     if (e.keyCode == 37) {
-      if (maze[nowPoint.y][nowPoint.x - 1] && (maze[nowPoint.y][nowPoint.x - 1] == 1)) {
-        run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x - 1, y: nowPoint.y, type: 2});
-      } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
-        alert ('good');
-      }
+      left ();
     }
     if (e.keyCode == 39) {
-      if (maze[nowPoint.y][nowPoint.x + 1] && (maze[nowPoint.y][nowPoint.x + 1] == 1)) {
-        run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x + 1, y: nowPoint.y, type: 2});
-      } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
-        alert ('good');
-      }
+      right ();
     }
   })
+
+  window.addEventListener('deviceorientation', function(event) {
+    if (Math.abs (event.beta) > Math.abs (event.gamma)) {
+      if (event.beta < -10) {
+        setTimeout (up, 100);
+      } else if (event.beta > 10) {
+        setTimeout (down, 100);
+      }
+    } else {
+      if (event.gamma < -10) {
+        setTimeout (left, 100);
+      } else if (event.gamma > 10) {
+        setTimeout (right, 100);
+      }
+    }
+    // if (event.beta < -50) {
+    //   if (!timer)
+    //   setTimeout (up, 100);
+    // } else if (event.beta > 50) {
+    //   if (!timer)
+    //   setTimeout (down, 100);
+    // }
+    // if (event.gamma < 10) {
+    //   if (!timer)
+    //   setTimeout (left, 100);
+    // } else if (event.gamma > 50) {
+    //   if (!timer)
+    //   setTimeout (right, 100);
+    // }
+  });
 });
