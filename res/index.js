@@ -98,43 +98,49 @@ $(function () {
     maze = newMaze;
   }
   var timer = null;
+  var enable = true;
 
   run (startPoint, endPoint, 1);
   var ok = function () {
+    enable = false;
     alert ('太棒了！你成功囉！！');
     window.location.assign ('https://github.com/comdan66');
   }
   var up = function () {
+    if (!enable) return;
     if (maze[nowPoint.y - 1][nowPoint.x] && (maze[nowPoint.y - 1][nowPoint.x] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y - 1, type: 2});
     } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
       ok ();
     }
-        clearTimeout (timer)
+    clearTimeout (timer)
   }
   var down = function () {
+    if (!enable) return;
     if (maze[nowPoint.y + 1][nowPoint.x] && (maze[nowPoint.y + 1][nowPoint.x] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y + 1, type: 2});
     } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
       ok ();
     }
-        clearTimeout (timer)
+    clearTimeout (timer)
   }
   var left = function () {
+    if (!enable) return;
     if (maze[nowPoint.y][nowPoint.x - 1] && (maze[nowPoint.y][nowPoint.x - 1] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x - 1, y: nowPoint.y, type: 2});
     } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
       ok ();
     }
-        clearTimeout (timer)
+    clearTimeout (timer)
   }
   var right = function () {
+    if (!enable) return;
     if (maze[nowPoint.y][nowPoint.x + 1] && (maze[nowPoint.y][nowPoint.x + 1] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x + 1, y: nowPoint.y, type: 2});
     } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
       ok ();
     }
-        clearTimeout (timer)
+    clearTimeout (timer)
   }
   $(window).on ('keydown', function (e) {
     if (e.keyCode == 38) {
