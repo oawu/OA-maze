@@ -147,7 +147,7 @@ $(function () {
     }
   })
 
-  window.addEventListener('deviceorientation', function(event) {
+  window.addEventListener ('deviceorientation', function (event) {
     if (Math.abs (event.beta) > Math.abs (event.gamma)) {
       if (event.beta < -10) {
         setTimeout (up, 100);
@@ -161,19 +161,5 @@ $(function () {
         setTimeout (right, 100);
       }
     }
-    // if (event.beta < -50) {
-    //   if (!timer)
-    //   setTimeout (up, 100);
-    // } else if (event.beta > 50) {
-    //   if (!timer)
-    //   setTimeout (down, 100);
-    // }
-    // if (event.gamma < 10) {
-    //   if (!timer)
-    //   setTimeout (left, 100);
-    // } else if (event.gamma > 50) {
-    //   if (!timer)
-    //   setTimeout (right, 100);
-    // }
   });
 });
