@@ -41,7 +41,7 @@ $(function () {
   
   var classMap = ['wall', 'road', 'now', 'end'];
 
-  var dimension = 20, column = maze[0].length, row = maze.length;
+  var dimension = 30, column = maze[0].length, row = maze.length;
   var $view = $('#view');
   var $units = $('#units').css ({'width': column * dimension + 'px', 'height': row * dimension + 'px'})
                           .append (

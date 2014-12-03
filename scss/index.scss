@@ -64,6 +64,10 @@ html {
             }
             &.now {
               background-color: rgba(0, 128, 0, 0.5);
+              border: 1px solid rgba(0, 128, 0, 0.7);
+              @include border-radius(50%);
+              @include box-shadow(inset -1px -1px 3px 0 rgba(0, 0, 0, 0.3), inset 1px 1px 3px 1px rgba(255, 255, 255, 0.3));
+
             }
             &.end {
               background-color: rgba(0, 0, 128, 0.9);
