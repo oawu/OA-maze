@@ -38,7 +38,7 @@ $(function () {
   }
 
   if (!checkMaze ()) return;
-  
+
   var classMap = ['wall', 'road', 'now', 'end'];
 
   var dimension = 30, column = maze[0].length, row = maze.length;
@@ -119,7 +119,7 @@ $(function () {
     if (!enable) return;
     if (maze[nowPoint.y + 1][nowPoint.x] && (maze[nowPoint.y + 1][nowPoint.x] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x, y: nowPoint.y + 1, type: 2});
-    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+    } else if (maze[nowPoint.y + 1][nowPoint.x] == 3) {
       ok ();
     }
     clearTimeout (timer)
@@ -128,7 +128,7 @@ $(function () {
     if (!enable) return;
     if (maze[nowPoint.y][nowPoint.x - 1] && (maze[nowPoint.y][nowPoint.x - 1] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x - 1, y: nowPoint.y, type: 2});
-    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+    } else if (maze[nowPoint.y][nowPoint.x - 1] == 3) {
       ok ();
     }
     clearTimeout (timer)
@@ -137,7 +137,7 @@ $(function () {
     if (!enable) return;
     if (maze[nowPoint.y][nowPoint.x + 1] && (maze[nowPoint.y][nowPoint.x + 1] == 1)) {
       run ({x: nowPoint.x, y: nowPoint.y, type: 1}, {x: nowPoint.x + 1, y: nowPoint.y, type: 2});
-    } else if (maze[nowPoint.y - 1][nowPoint.x] == 3) {
+    } else if (maze[nowPoint.y][nowPoint.x + 1] == 3) {
       ok ();
     }
     clearTimeout (timer)
