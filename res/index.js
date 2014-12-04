@@ -13,50 +13,124 @@ ga('send', 'pageview');
 
 $(function () {
   var maze = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 1, 1, 1, 1, 0],
-    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0],
+    [0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+    [0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0],
+    [0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ];
 
   var checkMaze = function (maze) {
     return true;
   }
 
-  if (checkMaze ()) return;
+  if (!checkMaze ()) return;
 
   var classMap = ['wall', 'road', 'now', 'end'];
 
-  var dimension = 30, column = maze[0].length, row = maze.length;
+  var dimension = 20, column = maze[0].length, row = maze.length;
   var $view = $('#view');
   var $units = $('#units').css ({'width': column * dimension + 'px', 'height': row * dimension + 'px'})
                           .append (
-                            maze.map (function (t) {
-                              return t.map (function (u) {
-                                return $('<div />').css ({'width': dimension + 'px', 'height': dimension + 'px'})
-                                                   .addClass ('unit')
+                            maze.map (function (t, i) {
+                              return t.map (function (u, j) {
+                                var $v = $('<div />').css ({'width': dimension + 'px', 'height': dimension + 'px'})
+                                                   .addClass ('cube')
                                                    .addClass (classMap[u]);
+                                if (u != 1) {
+
+                                  $v.append (['1', '2', '3', '4', '5', '6'].map (function (v) {
+                                    if ((t[j + 1] == 0 && v == 2) || (t[j - 1] == 0 && v == 4) || (maze[i + 1] && maze[i + 1][j] == 0 && v == 6) || (maze[i - 1] && maze[i - 1][j] == 0 && v == 5)) {
+                                      return null;
+                                    }
+                                    var $w = $('<div />').addClass ('b' + v)
+                                    if (v == 1)
+                                      $w.css ({'border-right-width': t[j + 1] == 0 ? 0 : '1px', 'border-left-width': t[j - 1] == 0 ? 0 : '1px', 'border-top-width': maze[i - 1] && maze[i - 1][j] == 0 ? 0 : '1px', 'border-bottom-width': maze[i + 1] && maze[i + 1][j] == 0 ? 0 : '1px'});
+                                    if (v == 3)
+                                      $w.css ({'border-left-width': t[j + 1] == 0 ? 0 : '1px', 'border-right-width': t[j - 1] == 0 ? 0 : '1px', 'border-top-width': maze[i - 1] && maze[i - 1][j] == 0 ? 0 : '1px', 'border-bottom-width': maze[i + 1] && maze[i + 1][j] == 0 ? 0 : '1px'});
+                                    if (v == 6) {
+                                      if ((maze[i + 1] && maze[i + 1][j] == 0 && maze[i + 1][j + 1] == 0 && t[j + 1] == 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j + 1] == 0 && t[j + 1] != 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j + 1] == 0 && t[j + 1] == 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j + 1] == 0 && t[j + 1] != 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j + 1] != 0 && t[j + 1] != 0) ||
+                                          (j + 1 >= column)
+                                          )
+                                            $w.css ({'border-right-width': '1px'});
+                                      if ((maze[i + 1] && maze[i + 1][j] != 0  && maze[i + 1][j - 1] != 0  && t[j - 1] != 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0  && maze[i + 1][j - 1] == 0  && t[j - 1] != 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] != 0  && maze[i + 1][j - 1] == 0  && t[j - 1] == 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] == 0  && maze[i + 1][j - 1] != 0  && t[j - 1] == 0) ||
+                                          (maze[i + 1] && maze[i + 1][j] == 0  && maze[i + 1][j - 1] == 0  && t[j - 1] != 0) ||
+                                          (j - 1 < 0)
+                                          )
+                                            $w.css ({'border-left-width': '1px'});
+                                    }
+                                    if (v == 5) {
+                                      if ((maze[i - 1] && maze[i - 1][j] == 0  && maze[i - 1][j - 1] == 0  && t[j - 1] != 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] == 0  && maze[i - 1][j - 1] != 0  && t[j - 1] == 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j - 1] == 0  && t[j - 1] == 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j - 1] == 0  && t[j - 1] != 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j - 1] != 0  && t[j - 1] != 0) ||
+                                          (j - 1 < 0)
+                                          )
+                                            $w.css ({'border-left-width': '1px'});
+
+                                      if ((maze[i - 1] && maze[i - 1][j] == 0  && maze[i - 1][j + 1] == 0  && t[j + 1] != 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] == 0  && maze[i - 1][j + 1] != 0  && t[j + 1] == 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j + 1] == 0  && t[j + 1] == 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j + 1] == 0  && t[j + 1] != 0) ||
+                                          (maze[i - 1] && maze[i - 1][j] != 0  && maze[i - 1][j + 1] != 0  && t[j + 1] != 0) ||
+                                          (j + 1 >= column)
+                                          )
+                                            $w.css ({'border-right-width': '1px'});
+                                    }
+                                      // $w.css ({'border-right-width': maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j + 1] == 0 ? '1px' : 0, 'border-left-width': maze[i + 1] && maze[i + 1][j] != 0 && maze[i + 1][j - 1] == 0 ? '1px' : 0});
+// console.error (maze[i + 1][j + 1]＆＆);
+                                    return $w.get (0);
+                                    // return  (t[j + 1] == 0 && v == 2) || (t[j - 1] == 0 && v == 4) || (maze[i + 1] && maze[i + 1][j] == 0 && v == 6) || (maze[i - 1] && maze[i - 1][j] == 0 && v == 5) ? null : $('<div />').addClass ('b' + v).get (0);
+                                  }).filter (function (v) { return v; }));
+                                }
+                                return $v;
                               });
                             }).reduce (function (p, n) { return p.concat (n) })
                           );
 
   var cW = parseFloat ($view.width ()) * 2;
   var cH = parseFloat ($view.height ()) * 2;
-  var cD = dimension * 3;
+  var cD = dimension * 4;
   var $cover = $('<div />').css ({'top': 0 - ($view.height () / 2) + 'px','left': 0 - ($view.width () / 2) + 'px', 'width': cW + 'px', 'height': cH + 'px', 'line-height': cH + 'px'})
                            .addClass ('cover')
                            .append (
                               $('<div />').css ({'width': cD + 'px', 'height': cD + 'px', 'box-shadow': '0 0 0 ' + (Math.max (cW, cH) * 1.5 - cD) / 2 + 'px rgba(0, 0, 0, 1), inset 0 0 10px 3px rgba(0, 0, 0, 1)'})
                                           .addClass ('round')
                             )
-                           .appendTo ($view);
+                           // .appendTo ($view);
 
-  var startPoint = {x: 1, y: 1, type: 2};
-  var endPoint = {x: 4, y: 1, type: 3};
+  var startPoint = {x: 5, y: 3, type: 2};
+  var endPoint = {x: 19, y: 13, type: 3};
+
   var nowPoint = {};
 
   var fetchMaze = function (diff) {
     $.each (diff, function (i, t) {
-      $('#units .unit').eq (t.x + t.y * column).removeClass().addClass ('unit').addClass (classMap [t.type])
+      var $v = $('#units .cube').eq (t.x + t.y * column).removeClass().addClass ('cube').addClass (classMap [t.type]);
+      if (t.type != 1)
+        $v.append (['1', '2', '3', '4', '5', '6'].map (function (v) { return $('<div />').addClass ('b' + v).get (0)}));
+      else $v.empty ();
     });
   }
   var diffMaze = function (n, o) {
@@ -67,10 +141,10 @@ $(function () {
     }).reduce (function (p, q) { return p.concat (q) }).filter (function (t) { return t; });
   }
   var moveMaze = function () {
-    cW = parseFloat ($view.width ()) * 2;
-    cH = parseFloat ($view.height ()) * 2;
-    $units.css ({'top': ($view.height () / 2) - ((nowPoint.y + 0.5) * dimension) + 'px', 'left': ($view.width () / 2) - ((nowPoint.x + 0.5) * dimension) + 'px'});
-    $cover.css ({'top': 0 - ($view.height () / 2) + 'px','left': 0 - ($view.width () / 2) + 'px', 'width': cW + 'px', 'height': cH + 'px', 'line-height': cH + 'px'});
+    // cW = parseFloat ($view.width ()) * 2;
+    // cH = parseFloat ($view.height ()) * 2;
+    $units.css ({ 'left': ($view.width () / 2) - ((nowPoint.x + 0.5) * dimension) + 'px'});
+    // $cover.css ({'top': 0 - ($view.height () / 2) + 'px','left': 0 - ($view.width () / 2) + 'px', 'width': cW + 'px', 'height': cH + 'px', 'line-height': cH + 'px'});
   }
   var run = function (s, e, n) {
     var newMaze = maze.map (function (u) { return u.slice (0); })
@@ -86,6 +160,7 @@ $(function () {
   var enable = true;
 
   run (startPoint, endPoint, 1);
+  console.error (nowPoint);
   var ok = function () {
     enable = false;
     alert ('太棒了！你成功囉！！');
