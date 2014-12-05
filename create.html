@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="tw">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-tw">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OA-maze</title>
+
+    <meta property="og:site_name" content="OA's GitHub" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:image" content="http://comdan66.github.io/OA-maze/img/og.png" />
+    <meta property="og:title" content="OA-maze" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:description" content="這不是一個 based on jQuery 的前端 library，但是它是一個 based on jQuery 的前端 迷宮遊戲。手機瀏覽時，支援使用 陀螺儀(G-sensor)..." />
+    <meta property="og:url" content="http://comdan66.github.io/OA-maze/" />
+
+    <meta name="description" content="這不是一個 based on jQuery 的前端 library，但是它是一個 based on jQuery 的前端 迷宮遊戲。手機瀏覽時，支援使用 陀螺儀(G-sensor)..." />
+    <meta name="keywords" content="吳政賢 | OA Wu | OA-maze | maze | game | jQuery | javascript | html | css" />
+    <meta name="author" content="吳政賢(OA Wu)" />
+
+    <link href="./css/frame.css" rel="stylesheet" type="text/css">
+    <script src="./res/jquery_v1.10.2/jquery-1.10.2.min.js" language="javascript" type="text/javascript" /></script>
+
+    <link href="./css/create.css" rel="stylesheet" type="text/css">
+    <script src="./res/create.js" language="javascript" type="text/javascript" /></script>
+
+  </head>
+  <body lang="zh-tw" oncontextmenu="return false;">
+    <div id='container'>
+
+      column count: <input type='number' id='column' value='' />, row count: <input type='number' id='row' value='' />
+      <br />
+      <br />
+
+      <input type='button' id='create' class='oa-btn' value='create' />
+      <input type='button' id='clean' class='oa-btn' value='clean' />
+      <input type='button' id='dump' class='oa-btn' value='dump' />
+      <hr />
+      <div id='units' class='clearfix'></div>
+      <div id='dumps'></div>
+    </div>
+  </body>
+</html>
