@@ -12,15 +12,15 @@
 * 它是一個 based on [jQuery](http://jquery.com/) 的前端 <font color='red'>**迷宮遊戲**</font>
 
 
-* Demo 範例頁面: [http://comdan66.github.io/OA-maze/](http://comdan66.github.io/OA-maze/)
+* Demo 範例頁面: [http://works.ioa.tw/OA-maze/](http://works.ioa.tw/OA-maze/)
 
 * 手機瀏覽時，支援使用 <font color='red'>**陀螺儀**(**G-sensor**)</font>。
 
 
 <br/>
 ## 玩法
-1. 使用電腦瀏覽器開啟[網頁](http://comdan66.github.io/OA-maze/)後，手指輕按鍵盤上的**方向鍵**移動，當尋找到**深藍色**終點即過關。
-2. 使用手機瀏覽器開啟[網頁](http://comdan66.github.io/OA-maze/)後，將手機水平擺放，並且借由左右搖晃移動畫面，當尋找到**深藍色**終點即過關。
+1. 使用電腦瀏覽器開啟[網頁](http://works.ioa.tw/OA-maze/)後，手指輕按鍵盤上的**方向鍵**移動，當尋找到**深藍色**終點即過關。
+2. 使用手機瀏覽器開啟[網頁](http://works.ioa.tw/OA-maze/)後，將手機水平擺放，並且借由左右搖晃移動畫面，當尋找到**深藍色**終點即過關。
 
 <br/>
 ## <a name="關於"></a>關於
